@@ -1,6 +1,6 @@
 {
   "name": "super-vuex",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "super vuex",
   "author": "evio",
   "license": "MIT",
@@ -13,6 +13,7 @@
     "dev": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config=config/webpack.config.dev.js"
   },
   "devDependencies": {
+    "axios": "^0.18.0",
     "babel-loader": "^7.1.4",
     "html-webpack-plugin": "^3.2.0",
     "vue-loader": "^15.2.4",

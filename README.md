@@ -54,34 +54,34 @@ child.value = {
 </template>
 
 <script>
-  import Factory from './store';
+  import store from './store';
   export default {
-    store: Factory.store,
+    store: store,
     name: "index",
     methods: {
       changeName() {
-        Factory.commit('user:name', 'someone');
+        this.$store.user.commit('name', 'someone');
       },
       changeAllow() {
-        Factory.commit('user:load.allow', false);
+        this.$store.user.commit('load.allow', false);
       },
       pushStudent() {
-        Factory.push('user:students', {
+        this.$store.user.push('students', {
           name: 'huaping',
           age: 300
         });
       },
       unshiftStudent() {
-        Factory.unshift('user:students', {
+        this.$store.user.unshift('students', {
           name: 'huaping1',
           age: 302
         });
       },
       deleteStudent() {
-        Factory.splice('user:students', 0, 1);
+        this.$store.user.splice('students', 0, 1);
       },
-      deleteAllow() {
-        Factory.delete('user:load.allow');
+      gets() {
+        this.$store.user.dispatch('load.data');
       }
     }
   }

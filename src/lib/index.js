@@ -1,17 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import ChildVuex from './interface';
-import Module from './module';
-import {
-  getterName,
-  commitName,
-  actionName,
-  arrayPushCommitName,
-  arrayUnShiftCommitName,
-  arraySpliceCommitName,
-  objectDeleteCommitName,
-  parseModuleExpression
-} from './util';
 
 Vue.use(Vuex);
 
@@ -20,60 +9,34 @@ export default class SuperVuex extends ChildVuex {
     super(name || 'Global');
     this._modules = {};
     this.store = null;
+    this.app = this;
+    this.pools = [];
   }
   
-  _getName(name, formatter) {
-    if (!this.store) throw new Error('please init SuperVuex first.');
-    let { moduleName, expression } = parseModuleExpression(name);
-    if (!moduleName) moduleName = this._namespace;
-    return formatter(moduleName, expression);
-  }
-  
+  /**
+   * init for vuex
+   * @returns {SuperVuex}
+   */
   init() {
     this.store = new Vuex.Store(this.value);
-    return this;
+    this.pools.forEach(item => {
+      if (this.store[item._namespace]) throw new Error(`${item._namespace} has already exists on store`);
+      this.store[item._namespace] = item;
+    });
+    return this.store;
   }
   
-  get(name) {
-    const path = this._getName(name, getterName);
-    return this.store.getter[path];
-  }
-  
-  commit(name, data) {
-    const path = this._getName(name, commitName);
-    return this.store.commit(path, data);
-  }
-  
-  push(name, ...data) {
-    const path = this._getName(name, arrayPushCommitName);
-    data.forEach(dat => this.store.commit(path, dat));
-  }
-  
-  unshift(name, ...data) {
-    const path = this._getName(name, arrayUnShiftCommitName);
-    data.forEach(dat => this.store.commit(path, dat));
-  }
-  
-  splice(name, ...data) {
-    const path = this._getName(name, arraySpliceCommitName);
-    return this.store.commit(path, data);
-  }
-  
-  delete(name) {
-    const path = this._getName(name, objectDeleteCommitName);
-    return this.store.commit(path);
-  }
-  
-  async dispatch(name, ...data) {
-    const path = this._getName(name, actionName);
-    return await this.store.dispatch(path, ...data);
-  }
-  
+  /**
+   * link module to vuex store
+   * @param obj
+   */
   setModule(obj) {
     if (obj instanceof ChildVuex) {
-      this._modules[obj._namespace] = obj.value;
       if (this[obj._namespace]) throw new Error(`${obj._namespace} is exists`);
-      this[obj._namespace] = new Module(this, obj._namespace);
+      this._modules[obj._namespace] = obj.value;
+      this[obj._namespace] = obj;
+      obj.app = this;
+      this.pools.push(obj);
     }
   }
 }

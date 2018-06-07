@@ -95,7 +95,6 @@ child.value = {
 - setPushCommit
 - setUnShiftCommit
 - setSpliceCommit
-- setDeleteCommit
 - setAction
 
 
@@ -107,14 +106,7 @@ child.value = {
 - push
 - unshift
 - splice
-- delete
 - dispatch
 - setModule
-
-> 注意：我们也可以通过简化的方式来获取数据，比如：
-
-```javascript
-Factory.user.commit('a.n.c', data);
-```
 
 

@@ -66,9 +66,9 @@ export default class SuperVuex extends ChildVuex {
     return this.store.commit(path);
   }
   
-  dispatch(name, ...data) {
+  async dispatch(name, ...data) {
     const path = this._getName(name, actionName);
-    return this.store.dispatch(path, ...data);
+    return await this.store.dispatch(path, ...data);
   }
   
   setModule(obj) {

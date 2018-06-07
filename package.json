@@ -1,7 +1,7 @@
 {
   "name": "super-vuex",
-  "version": "1.0.0",
-  "description": "mutify framework",
+  "version": "1.0.1",
+  "description": "super vuex",
   "author": "evio",
   "license": "MIT",
   "main": "index.js",

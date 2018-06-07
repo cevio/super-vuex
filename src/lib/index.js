@@ -30,10 +30,7 @@ export default class SuperVuex extends ChildVuex {
   
   init() {
     this.store = new Vuex.Store(this.value);
-    return {
-      store: this.store,
-      factory: this
-    }
+    return this;
   }
   
   get(name) {

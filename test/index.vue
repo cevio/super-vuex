@@ -20,34 +20,34 @@
 </template>
 
 <script>
-  import Store from './store';
+  import Factory from './store';
   export default {
-    store: Store.store,
+    store: Factory.store,
     name: "index",
     methods: {
       changeName() {
-        Store.factory.commit('user:name', 'someone');
+        Factory.commit('user:name', 'someone');
       },
       changeAllow() {
-        Store.factory.commit('user:load.allow', false);
+        Factory.commit('user:load.allow', false);
       },
       pushStudent() {
-        Store.factory.push('user:students', {
+        Factory.push('user:students', {
           name: 'huaping',
           age: 300
         });
       },
       unshiftStudent() {
-        Store.factory.unshift('user:students', {
+        Factory.unshift('user:students', {
           name: 'huaping1',
           age: 302
         });
       },
       deleteStudent() {
-        Store.factory.splice('user:students', 0, 1);
+        Factory.splice('user:students', 0, 1);
       },
       deleteAllow() {
-        Store.factory.delete('user:load.allow');
+        Factory.delete('user:load.allow');
       }
     }
   }

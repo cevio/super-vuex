@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import ChildVuex from './interface';
+import Module from './module';
 import {
   getterName,
   commitName,
@@ -71,6 +72,8 @@ export default class SuperVuex extends ChildVuex {
   setModule(obj) {
     if (obj instanceof ChildVuex) {
       this._modules[obj._namespace] = obj.value;
+      if (this[obj._namespace]) throw new Error(`${obj._namespace} is exists`);
+      this[obj._namespace] = new Module(this, obj._namespace);
     }
   }
 }

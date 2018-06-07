@@ -26,7 +26,7 @@
     name: "index",
     methods: {
       changeName() {
-        Factory.commit('user:name', 'someone');
+        Factory.user.commit('name', 'someone');
       },
       changeAllow() {
         Factory.commit('user:load.allow', false);

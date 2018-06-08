@@ -1,6 +1,6 @@
 module.exports = {
   title: 'SuperVue',
-  base: '/super-vuex',
+  base: '/super-vuex/',
   themeConfig: {
     nav: [
       { text: '主页', link: '/introduce/introduce.html' },

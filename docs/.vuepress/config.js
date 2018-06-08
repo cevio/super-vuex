@@ -6,9 +6,9 @@ module.exports = {
       { text: 'GitHub', link: 'https://github.com/cevio/super-vuex' },
     ],
     sidebar: [
-      '/introduce/introduce',
-      '/use/use',
-      '/demo/demo'
+      '/md/introduce/introduce',
+      '/md/use/use',
+      '/md/demo/demo'
     ]
   }
 }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SuperVue | demo</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/4.styles.e0637bbd.css" as="style"><link rel="preload" href="/assets/js/app.dd9eb699.js" as="script"><link rel="preload" href="/assets/js/2.f972b152.js" as="script"><link rel="prefetch" href="/assets/js/0.46761577.js"><link rel="prefetch" href="/assets/js/1.18b1b9ce.js"><link rel="prefetch" href="/assets/js/3.219b5ff8.js">
+    <link rel="stylesheet" href="/assets/css/4.styles.e0637bbd.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      SuperVue
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/introduce/introduce.html" class="nav-link">主页</a></div><div class="nav-item"><a href="https://github.com/cevio/super-vuex" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/introduce/introduce.html" class="nav-link">主页</a></div><div class="nav-item"><a href="https://github.com/cevio/super-vuex" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><!----></nav><ul class="sidebar-links"><li><a href="/introduce/introduce.html" class="sidebar-link">介绍</a></li><li><a href="/use/use.html" class="sidebar-link">使用</a></li><li><a href="/demo/demo.html" class="active sidebar-link">demo</a></li></ul></div><div class="page"><div class="content"><h1 id="demo"><a href="#demo" aria-hidden="true" class="header-anchor">#</a> demo</h1><p>创建ChildVuex实例，存储user数据</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// ./store/user.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ChildVuex <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;super-vuex&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 'user'为命名空间</span>
+<span class="token keyword">const</span> child <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChildVuex</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> child<span class="token punctuation">;</span>
+
+child<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'evio'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span>
+  students<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      name<span class="token punctuation">:</span> <span class="token string">'yixianle'</span><span class="token punctuation">,</span>
+      age<span class="token punctuation">:</span> <span class="token number">10</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  load<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    allow<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    total<span class="token punctuation">:</span> <span class="token number">100</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>可以创建多个，这里再创建一个ChildVuex实例，存储sub数据</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// ./store/sub.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ChildVuex <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;super-vuex&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 'sub'为命名空间</span>
+<span class="token keyword">const</span> sub <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChildVuex</span><span class="token punctuation">(</span><span class="token string">'sub'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> sub<span class="token punctuation">;</span>
+
+sub<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'evio'</span><span class="token punctuation">,</span>
+  subs<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  isVip<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre></div><p>创建一个SuperVuex实例</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// store.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SuperVuex <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'super-vuex'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 两个vuex插件，vuexPromise和vuejsStorage</span>
+<span class="token keyword">import</span> vuexPromise <span class="token keyword">from</span> <span class="token string">'vuex-promise'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> vuejsStorage <span class="token keyword">from</span> <span class="token string">'vuejs-storage'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> UserStore <span class="token keyword">from</span> <span class="token string">'./store/user'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Subs <span class="token keyword">from</span> <span class="token string">'./store/sub'</span>
+
+<span class="token keyword">const</span> Main <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SuperVuex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Main<span class="token punctuation">.</span><span class="token function">setModule</span><span class="token punctuation">(</span>UserStore<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 可以set多个module</span>
+Main<span class="token punctuation">.</span><span class="token function">setModule</span><span class="token punctuation">(</span>Subs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 在SuperVuex中使用插件</span>
+Main<span class="token punctuation">.</span><span class="token function">setPlugin</span><span class="token punctuation">(</span>vuexPromise<span class="token punctuation">,</span> vuejsStorage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> Main<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>在VUE中如何使用</p><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  ...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+  <span class="token keyword">import</span> store <span class="token keyword">from</span> <span class="token string">'./store'</span><span class="token punctuation">;</span>
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    store<span class="token punctuation">:</span> store<span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">,</span>
+    methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token function">changeName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'someone'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">changeAllow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'load.allow'</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">pushStudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'students'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+          name<span class="token punctuation">:</span> <span class="token string">'huaping'</span><span class="token punctuation">,</span>
+          age<span class="token punctuation">:</span> <span class="token number">300</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">pushSubs</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>sub<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'subs'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">unshiftStudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token string">'students'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+          name<span class="token punctuation">:</span> <span class="token string">'huaping1'</span><span class="token punctuation">,</span>
+          age<span class="token punctuation">:</span> <span class="token number">302</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">deleteStudent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token string">'students'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">gets</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'load.data'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div><div class="content edit-link"><!----><!----></div><div class="content page-nav"><p class="inner"><span class="prev">
+        ← <a href="/use/use.html" class="prev">
+          使用
+        </a></span><!----></p></div></div></div></div>
+    <script src="/assets/js/2.f972b152.js" defer></script><script src="/assets/js/app.dd9eb699.js" defer></script>
+  </body>
+</html>

@@ -19,7 +19,9 @@ export default class ChildVuex {
     this._state = {};
     this._getters = {};
     this._mutations = {};
+    this._modules = {};
     this._actions = {};
+    this._plugins = [];
     this._namespace = name;
     this.app = null;
   }
@@ -35,7 +37,8 @@ export default class ChildVuex {
       getters: this._getters,
       mutations: this._mutations,
       actions: this._actions,
-      modules: this._modules
+      modules: this._modules,
+      plugins: this._plugins
     };
   }
   

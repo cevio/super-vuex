@@ -7,10 +7,9 @@ Vue.use(Vuex);
 export default class SuperVuex extends ChildVuex {
   constructor(name) {
     super(name || 'Global');
-    this._modules = {};
+    this._pools = [];
     this.store = null;
     this.app = this;
-    this.pools = [];
   }
   
   /**
@@ -19,7 +18,7 @@ export default class SuperVuex extends ChildVuex {
    */
   init() {
     this.store = new Vuex.Store(this.value);
-    this.pools.forEach(item => {
+    this._pools.forEach(item => {
       if (this.store[item._namespace]) throw new Error(`${item._namespace} has already exists on store`);
       this.store[item._namespace] = item;
     });
@@ -28,15 +27,24 @@ export default class SuperVuex extends ChildVuex {
   
   /**
    * link module to vuex store
-   * @param obj
+   * @param args
+   * @returns {SuperVuex}
    */
-  setModule(obj) {
-    if (obj instanceof ChildVuex) {
-      if (this[obj._namespace]) throw new Error(`${obj._namespace} is exists`);
-      this._modules[obj._namespace] = obj.value;
-      this[obj._namespace] = obj;
-      obj.app = this;
-      this.pools.push(obj);
-    }
+  setModule(...args) {
+    args.forEach(obj => {
+      if (obj instanceof ChildVuex) {
+        if (this[obj._namespace]) throw new Error(`${obj._namespace} is exists`);
+        this._modules[obj._namespace] = obj.value;
+        this[obj._namespace] = obj;
+        obj.app = this;
+        this._pools.push(obj);
+      }
+    });
+    return this;
+  }
+  
+  setPlugin(...plugins) {
+    this._plugins.push(...plugins);
+    return this;
   }
 }

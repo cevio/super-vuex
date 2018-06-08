@@ -10,7 +10,9 @@
     "url": "git+ssh://git@github.com/cevio/super-vuex.git"
   },
   "scripts": {
-    "dev": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config=config/webpack.config.dev.js"
+    "dev": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config=config/webpack.config.dev.js",
+    "docs:dev": "./node_modules/.bin/vuepress dev docs",
+    "docs:build": "./node_modules/.bin/vuepress build docs"
   },
   "devDependencies": {
     "axios": "^0.18.0",
@@ -24,6 +26,7 @@
   },
   "dependencies": {
     "vue": "^2.5.16",
+    "vuepress": "^0.10.0",
     "vuex": "^3.0.1"
   }
 }

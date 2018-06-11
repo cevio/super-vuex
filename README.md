@@ -100,6 +100,8 @@ child.setState({
 })
 ```
 
+其实`.value`是`setState`的变型而已。
+
 #### ChildVuex data path
 
 数据路径，在之后的所有方法中，数据路径至关重要，它是一个数据的直观路径字符串，也就是上面`[ChildVuex].value` 数据定义的数据路径。

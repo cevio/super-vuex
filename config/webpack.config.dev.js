@@ -19,7 +19,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'super-vuex': path.resolve(__dirname, '../src')
+      'super-vuex': path.resolve(__dirname, '..')
     }
   },
   plugins: [

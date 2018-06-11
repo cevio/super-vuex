@@ -49,8 +49,16 @@ export default class ChildVuex {
    * @param value
    */
   set value(value) {
-    this._state = value;
-    this._parseState(value);
+    this.setState(value);
+  }
+  
+  /**
+   * set a new data tree
+   * @param data
+   */
+  setState(data) {
+    this._state = data;
+    this._parseState(data);
   }
   
   /**

@@ -22,6 +22,14 @@ export function arraySpliceCommitName(namespace, path) {
   return `${namespace}__committer__array__splice__${path.join('_')}`;
 }
 
+export function arrayPopCommitName(namespace, path) {
+  return `${namespace}__committer__array__pop__${path.join('_')}`;
+}
+
+export function arrayShiftCommitName(namespace, path) {
+  return `${namespace}__committer__array__shift__${path.join('_')}`;
+}
+
 export function getTarget(state, path) {
   if (!path.length) return state;
   let result = state;

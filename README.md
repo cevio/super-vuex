@@ -158,6 +158,8 @@ child.setCommit('demo.set.commit', (state, data) => {
 - **[ChildVuex].setPushCommit** 数组的`push`操作行为
 - **[ChildVuex].setUnShiftCommit** 数组的`unshift`操作行为
 - **[ChildVuex].setSpliceCommit** 数组的`splice`操作行为
+- **[ChildVuex].setPopCommit** 数组的`pop`操作行为
+- **[ChildVuex].setShiftCommit** 数组的`shift`操作行为
 
 
 ```javascript
@@ -166,6 +168,9 @@ child.setUnShiftCommit(path, callback<(state, data)>);
 
 // 注意splice使用方法，在`data`中是一个数组
 child.setSpliceCommit(path, callback<(state, data)>);
+
+child.setPopCommit(path);
+child.setShiftCommit(path);
 ```
 
 #### [ChildVuex].setAction
@@ -199,7 +204,7 @@ child.commit('demo.set.commit', 2000);
 
 #### [ChildVuex].push
 
-提交一个数据在数据 `push`行为
+提交一个数据 `push`行为
 
 ```javascript
 const data = [
@@ -215,9 +220,17 @@ const data = [
 child.push('students', ...data);
 ```
 
+#### [ChildVuex].pop
+
+删除最后一个数据 `pop`行为
+
+```javascript
+child.pop('students');
+```
+
 #### [ChildVuex].unshift
 
-提交一个数据在数据 `unshift`行为
+提交一个数据 `unshift`行为
 
 ```javascript
 const data = [
@@ -231,6 +244,14 @@ const data = [
   }
 ]
 child.unshift('students', ...data);
+```
+
+#### [ChildVuex].shift
+
+删除最前一个数据 `shift`行为
+
+```javascript
+child.shift('students');
 ```
 
 #### [ChildVuex].splice

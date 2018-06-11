@@ -12,9 +12,11 @@
     </ul>
     <p><button @click="changeName">修改名字</button></p>
     <p><button @click="changeAllow">不许登录</button></p>
-    <p><button @click="pushStudent">添加用户</button></p>
-    <p><button @click="unshiftStudent">前置用户</button></p>
-    <p><button @click="deleteStudent">删除第一个用户</button></p>
+    <p><button @click="pushStudent">Array.push</button></p>
+    <p><button @click="unshiftStudent">Array.unshift</button></p>
+    <p><button @click="popStudent">Array.pop</button></p>
+    <p><button @click="shiftStudent">Array.shift</button></p>
+    <p><button @click="deleteStudent">Array.splice</button></p>
     <p><button @click="gets">获取{{$store.state.user.load.data.app_version}}</button></p>
   </div>
 </template>
@@ -35,6 +37,9 @@
         this.$store.user.push('students', {
           name: 'huaping',
           age: 300
+        }, {
+          name: 'abc',
+          age: 72
         });
       },
       unshiftStudent() {
@@ -43,8 +48,14 @@
           age: 302
         });
       },
+      popStudent() {
+        this.$store.user.pop('students');
+      },
+      shiftStudent() {
+        this.$store.user.shift('students');
+      },
       deleteStudent() {
-        this.$store.user.splice('students', 0, 1);
+        this.$store.user.splice('students', 1, 1);
       },
       gets() {
         this.$store.user.dispatch('load.data');

@@ -6,6 +6,8 @@ import {
   arrayPushCommitName,
   arrayUnShiftCommitName,
   arraySpliceCommitName,
+  arrayPopCommitName,
+  arrayShiftCommitName,
   getTarget,
   setTarget
 } from './util';
@@ -74,9 +76,11 @@ export default class ChildVuex {
     if (Array.isArray(object[name])) {
       this.setGetter(path, state => getTarget(state, path));
       this.setCommit(path, (state, data) => setTarget(state, path, (result, shortName) => Vue.set(result, shortName, data)));
-      this.setPushCommit(path, (state, data) => setTarget(state, path, (result, shortName) => result[shortName].push(data)));
-      this.setUnShiftCommit(path, (state, data) => setTarget(state, path, (result, shortName) => result[shortName].unshift(data)));
+      this.setPushCommit(path, (state, data) => setTarget(state, path, (result, shortName) => result[shortName].push(...data)));
+      this.setUnShiftCommit(path, (state, data) => setTarget(state, path, (result, shortName) => result[shortName].unshift(...data)));
       this.setSpliceCommit(path, (state, data) => setTarget(state, path, (result, shortName) => result[shortName].splice(...data)));
+      this.setPopCommit(path, state => setTarget(state, path, (result, shortName) => result[shortName].pop()));
+      this.setShiftCommit(path, state => setTarget(state, path, (result, shortName) => result[shortName].shift()));
     } else if (typeof object[name] === 'object') {
       for (const i in object[name]) {
         const _path = path.slice(0);
@@ -142,6 +146,26 @@ export default class ChildVuex {
   }
   
   /**
+   * make an array.pop committer
+   * @param name
+   * @param cb
+   */
+  setPopCommit(name, cb) {
+    const names = Array.isArray(name) ? name : name.split('.');
+    this._mutations[arrayPopCommitName(this._namespace, names)] = cb;
+  }
+  
+  /**
+   * make an array.shift committer
+   * @param name
+   * @param cb
+   */
+  setShiftCommit(name, cb) {
+    const names = Array.isArray(name) ? name : name.split('.');
+    this._mutations[arrayShiftCommitName(this._namespace, names)] = cb;
+  }
+  
+  /**
    * make a action
    * @param name
    * @param cb
@@ -190,7 +214,16 @@ export default class ChildVuex {
    */
   push(name, ...data) {
     const path = this._getName(name, arrayPushCommitName);
-    data.forEach(dat => this.app.store.commit(path, dat));
+    this.app.store.commit(path, data);
+  }
+  
+  /**
+   * array commit data for pop
+   * @param name
+   */
+  pop(name) {
+    const path = this._getName(name, arrayPopCommitName);
+    this.app.store.commit(path);
   }
   
   /**
@@ -200,7 +233,16 @@ export default class ChildVuex {
    */
   unshift(name, ...data) {
     const path = this._getName(name, arrayUnShiftCommitName);
-    data.forEach(dat => this.app.store.commit(path, dat));
+    this.app.store.commit(path, data);
+  }
+  
+  /**
+   * array commit data for shift
+   * @param name
+   */
+  shift(name) {
+    const path = this._getName(name, arrayShiftCommitName);
+    this.app.store.commit(path);
   }
   
   /**

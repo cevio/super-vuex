@@ -96,7 +96,9 @@ ChildVuex只对Object类型进行深度路径处理，一旦遇到非object类�
 - get(name):获取一个getter属性；例：store.sub.get('subs')
 - commit(name, data):提交处理一个属性；例：store.user.commit('age', data)
 - push(name, ...data):提交一个数据的push行为
+- pop(name):提交一个数据的pop行为
 - unshift(name, ...data):提交一个数据的unshift行为
+- shift(name): 提交一个数据的shift行为
 - splice(name, arguments):用法同Array.prototype.splice
 - dispatch(name, data):个async/await型的调用函数。与Vuex中的dispatch一致，用于出发setAction定义的行为
 
@@ -150,10 +152,14 @@ ChildVuex只对Object类型进行深度路径处理，一旦遇到非object类�
 - [ChildVuex].setPushCommit 数组的push操作行为
 - [ChildVuex].setUnShiftCommit 数组的unshift操作行为
 - [ChildVuex].setSpliceCommit 数组的splice操作行为
+- [ChildVuex].setPopCommit 数组的pop操作行为
+- [ChildVuex].setShiftCommit 数组的Shift操作行为
 
 ```javascript
     child.setPushCommit(path, callback<(state, data)>);
     child.setUnShiftCommit(path, callback<(state, data)>);
+    child.setPopCommit(path, callback<(state)>);
+    child.setShiftCommit(path, callback<(state)>);
     
     // 注意splice使用方法，在`data`中是一个数组
     child.setSpliceCommit(path, callback<(state, data)>);

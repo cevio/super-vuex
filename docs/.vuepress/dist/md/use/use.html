@@ -7,7 +7,7 @@
     <meta name="description" content="一套用于简化Vuex的数据架构">
     
     
-    <link rel="preload" href="/super-vuex/assets/css/4.styles.4805f51c.css" as="style"><link rel="preload" href="/super-vuex/assets/js/app.79e277fc.js" as="script"><link rel="preload" href="/super-vuex/assets/js/0.43b29e13.js" as="script"><link rel="prefetch" href="/super-vuex/assets/js/1.1b3e955d.js"><link rel="prefetch" href="/super-vuex/assets/js/2.00ff07cc.js"><link rel="prefetch" href="/super-vuex/assets/js/3.0083cd94.js">
+    <link rel="preload" href="/super-vuex/assets/css/4.styles.4805f51c.css" as="style"><link rel="preload" href="/super-vuex/assets/js/app.cbbe179f.js" as="script"><link rel="preload" href="/super-vuex/assets/js/0.f7002cf3.js" as="script"><link rel="prefetch" href="/super-vuex/assets/js/1.1b3e955d.js"><link rel="prefetch" href="/super-vuex/assets/js/2.e44d01ac.js"><link rel="prefetch" href="/super-vuex/assets/js/3.0083cd94.js">
     <link rel="stylesheet" href="/super-vuex/assets/css/4.styles.4805f51c.css">
   </head>
   <body>
@@ -43,7 +43,11 @@ Main<span class="token punctuation">.</span><span class="token function">setModu
     total<span class="token punctuation">:</span> <span class="token number">100</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre></div><h4 id="childvuex-data-path"><a href="#childvuex-data-path" aria-hidden="true" class="header-anchor">#</a> ChildVuex data path</h4><p>数据路径，在之后的所有方法中，数据路径至关重要，它是一个数据的直观路径字符串，也就是上面[ChildVuex].value 数据定义的数据路径。</p><p>比如我们需要获取allow的路径：</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">'load.allow'</span>
+</code></pre></div><p>你也可以通过setState方法来设置一个数据树</p><div class="language-javascript extra-class"><pre class="language-javascript"><code>child<span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'evio'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">18</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>setState方法等同于value的setter方法。</p><h4 id="childvuex-data-path"><a href="#childvuex-data-path" aria-hidden="true" class="header-anchor">#</a> ChildVuex data path</h4><p>数据路径，在之后的所有方法中，数据路径至关重要，它是一个数据的直观路径字符串，也就是上面[ChildVuex].value 数据定义的数据路径。</p><p>比如我们需要获取allow的路径：</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">'load.allow'</span>
 </code></pre></div><p>ChildVuex只对Object类型进行深度路径处理，一旦遇到非object类型，路径就停止跟踪。数组虽然属于object类型，但是它在这里也是停止跟踪的。比如</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">'students'</span>
 </code></pre></div><h3 id="操作方法"><a href="#操作方法" aria-hidden="true" class="header-anchor">#</a> 操作方法</h3><p>调用语法</p><div class="language-javascript extra-class"><pre class="language-javascript"><code>  <span class="token keyword">import</span> store <span class="token keyword">from</span> <span class="token string">'./store'</span><span class="token punctuation">;</span>
   <span class="token comment">/*
@@ -92,6 +96,6 @@ Main<span class="token punctuation">.</span><span class="token function">setModu
           demo
         </a> →
       </span></p></div></div></div></div>
-    <script src="/super-vuex/assets/js/0.43b29e13.js" defer></script><script src="/super-vuex/assets/js/app.79e277fc.js" defer></script>
+    <script src="/super-vuex/assets/js/0.f7002cf3.js" defer></script><script src="/super-vuex/assets/js/app.cbbe179f.js" defer></script>
   </body>
 </html>

@@ -202,7 +202,7 @@ export default class ChildVuex {
    */
   get(name) {
     const path = this._getName(name, getterName);
-    return this.app.store.getter[path];
+    return this.app.store.getters[path];
   }
   
   /**

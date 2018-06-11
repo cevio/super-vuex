@@ -92,11 +92,17 @@ export default Main.init();
       pushSubs() {
         this.$store.sub.push('subs', 10);
       },
+      popSubs() {
+        this.$store.sub.pop('subs');
+      },
       unshiftStudent() {
         this.$store.user.unshift('students', {
           name: 'huaping1',
           age: 302
         });
+      },
+      shiftStudent() {
+        this.$store.user.shift('students')
       },
       deleteStudent() {
         this.$store.user.splice('students', 0, 1);

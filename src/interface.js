@@ -89,7 +89,7 @@ export default class ChildVuex {
       this.setSpliceCommit(path, (state, data) => setTarget(state, path, (result, shortName) => result[shortName].splice(...data)));
       this.setPopCommit(path, state => setTarget(state, path, (result, shortName) => result[shortName].pop()));
       this.setShiftCommit(path, state => setTarget(state, path, (result, shortName) => result[shortName].shift()));
-    } else if (typeof object[name] === 'object') {
+    } else if (object[name] && typeof object[name] === 'object') {
       for (const i in object[name]) {
         const _path = path.slice(0);
         _path.push(i);

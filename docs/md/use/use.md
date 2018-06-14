@@ -37,13 +37,13 @@ Main.setPlugin(MyPlugin_1, Myplugin_2, ...);
 export default Main.init();
 ```
 
-#### [SuperVuex].registerModule
+#### [SuperVuex].$connect.registerModule
 
 在实例SuperVuex.init执行之后，动态注入module模块
 ```javascript
 Main.$connect.registerModule(A:ChildVuex, B:ChildVuex, C:ChildVuex, ...);
 ```
-#### [SuperVuex].unregisterModule
+#### [SuperVuex].$connect.unregisterModule
 
 在实例SuperVuex.init执行之后，解注module模块
 ```javascript

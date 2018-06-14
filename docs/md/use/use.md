@@ -66,6 +66,15 @@ child.value = {
   }
 }
 ```
+你也可以通过setState方法来设置一个数据树
+```javascript
+child.setState({
+  name: 'evio',
+  age: 18
+})
+```
+setState方法等同于value的setter方法。
+
 #### ChildVuex data path
 数据路径，在之后的所有方法中，数据路径至关重要，它是一个数据的直观路径字符串，也就是上面[ChildVuex].value 数据定义的数据路径。
 

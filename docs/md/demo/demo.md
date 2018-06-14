@@ -9,6 +9,7 @@ import { ChildVuex } from "super-vuex";
 const child = new ChildVuex('user');
 export default child;
 
+// 初始化vuex配置参数
 child.value = {
   name: 'evio',
   age: 18,
@@ -23,6 +24,22 @@ child.value = {
     total: 100
   }
 };
+
+// 你也可以写成这样
+child.setState({
+  name: 'evio',
+  age: 18,
+  students: [
+    {
+      name: 'yixianle',
+      age: 10
+    }
+  ],
+  load: {
+    allow: true,
+    total: 100
+  }
+})
 ```
 
 可以创建多个，这里再创建一个ChildVuex实例，存储sub数据

@@ -43,8 +43,44 @@ export default class SuperVuex extends ChildVuex {
     return this;
   }
   
+  /**
+   * 安装插件
+   * @param plugins
+   * @returns {SuperVuex}
+   */
   setPlugin(...plugins) {
     this._plugins.push(...plugins);
+    return this;
+  }
+  
+  /**
+   * 动态注册模块
+   * @param args
+   * @returns {SuperVuex}
+   */
+  registerModule(...args) {
+    args.forEach(obj => {
+      if (obj instanceof ChildVuex) {
+        if (this[obj._namespace] || this.store[obj._namespace]) throw new Error(`${obj._namespace} is exists`);
+        obj.app = this;
+        this.store[obj._namespace] = this[obj._namespace] = obj;
+        this.store.registerModule(obj.value);
+      }
+    });
+    return this;
+  }
+  
+  /**
+   * 解注模块
+   * @param args
+   * @returns {SuperVuex}
+   */
+  unregisterModule(...args) {
+    args.forEach(name => {
+      if (this[name] && this.store[name]) {
+        this.store.unregisterModule(name);
+      }
+    });
     return this;
   }
 }

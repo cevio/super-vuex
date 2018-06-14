@@ -58,6 +58,22 @@ Main.setPlugin(MyPlugin_1, Myplugin_2, ...);
 export default Main.init();
 ```
 
+#### [SuperVuex].registerModule
+
+动态注册模块
+
+```javascript
+Main.registerModule(A, B, C, ...);
+```
+
+#### [SuperVuex].unregisterModule
+
+解注模块
+
+```javascript
+Main.unregisterModule('abc', 'def', ...);
+```
+
 ### ChildVuex
 
 主要用于业务逻辑数据模块化。它与`SuperVuex`相似，只有一个参数即命名空间。

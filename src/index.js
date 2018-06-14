@@ -18,6 +18,7 @@ export default class SuperVuex extends ChildVuex {
    */
   init() {
     this.store = new Vuex.Store(this.value);
+    this.store.$connect = this;
     this._pools.forEach(item => {
       if (this.store[item._namespace]) throw new Error(`${item._namespace} has already exists on store`);
       this.store[item._namespace] = item;
@@ -64,7 +65,7 @@ export default class SuperVuex extends ChildVuex {
         if (this[obj._namespace] || this.store[obj._namespace]) throw new Error(`${obj._namespace} is exists`);
         obj.app = this;
         this.store[obj._namespace] = this[obj._namespace] = obj;
-        this.store.registerModule(obj.value);
+        this.store.registerModule(obj._namespace, obj.value);
       }
     });
     return this;
@@ -78,6 +79,8 @@ export default class SuperVuex extends ChildVuex {
   unregisterModule(...args) {
     args.forEach(name => {
       if (this[name] && this.store[name]) {
+        delete this.store[name];
+        delete this[name];
         this.store.unregisterModule(name);
       }
     });

@@ -32,7 +32,8 @@ module.exports = {
     contentBase: path.join(__dirname, '../src'),
     compress: true,
     port: 3000,
-    host: 'authorize.u51-inc.com',
+    // host: 'authorize.u51-inc.com',
+    host: '0.0.0.0',
     historyApiFallback: true
   }
 };

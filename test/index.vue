@@ -18,17 +18,20 @@
     <p><button @click="shiftStudent">Array.shift</button></p>
     <p><button @click="deleteStudent">Array.splice</button></p>
     <p><button @click="gets">获取{{$store.state.user.load.data.app_version}}</button></p>
+    <p><button @click="registerModule">动态注入module</button></p>
   </div>
 </template>
 
 <script>
   import store from './store';
+  import { ChildVuex } from 'super-vuex'
   export default {
     store: store,
     name: "index",
     methods: {
       changeName() {
         this.$store.user.commit('name', 'someone');
+        console.log(this.$store)
       },
       changeAllow() {
         this.$store.user.commit('load.allow', false);
@@ -59,6 +62,15 @@
       },
       gets() {
         this.$store.user.dispatch('load.data');
+      },
+      registerModule() {
+        const subs = new ChildVuex('subs');
+        subs.value = {
+          name: 'demo',
+          subs: [1,2,3,4]
+        };
+        this.$store.registerModule(subs);
+        console.log(this.$store);
       }
     }
   }

@@ -90,8 +90,11 @@ export default class ChildVuex {
       this.setPopCommit(path, state => setTarget(state, path, (result, shortName) => result[shortName].pop()));
       this.setShiftCommit(path, state => setTarget(state, path, (result, shortName) => result[shortName].shift()));
     } else if (object[name] && typeof object[name] === 'object') {
+      const paths = path.slice();
+      this.setGetter(paths, state => getTarget(state, paths));
+      this.setCommit(paths, (state, data) => setTarget(state, paths, (result, shortName) => Vue.set(result, shortName, data)));
       for (const i in object[name]) {
-        const _path = path.slice(0);
+        const _path = path.slice();
         _path.push(i);
         this.setGetter(_path, state => getTarget(state, _path));
         this.setCommit(_path, (state, data) => setTarget(state, _path, (result, shortName) => Vue.set(result, shortName, data)));

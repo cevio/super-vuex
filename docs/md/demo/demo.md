@@ -82,6 +82,21 @@ Main.setPlugin(vuexPromise, vuejsStorage);
 
 export default Main.init();
 ```
+
+在SuperVuex初始化之后，还可以动态注入或者解注module模块
+```javascript
+import store from 'store.js'
+const newModule = new ChildVuex('newModule');
+
+// 动态注入模块
+store.$connect.registerModule(newModule);
+
+// 动态解注模块
+store.$connect.unregisterModule('newModule');
+```
+
+
+
 在VUE中如何使用
 ```vue
 <template>

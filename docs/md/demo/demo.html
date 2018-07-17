@@ -7,7 +7,7 @@
     <meta name="description" content="一套用于简化Vuex的数据架构">
     
     
-    <link rel="preload" href="/super-vuex/assets/css/4.styles.4805f51c.css" as="style"><link rel="preload" href="/super-vuex/assets/js/app.cbbe179f.js" as="script"><link rel="preload" href="/super-vuex/assets/js/2.e44d01ac.js" as="script"><link rel="prefetch" href="/super-vuex/assets/js/0.f7002cf3.js"><link rel="prefetch" href="/super-vuex/assets/js/1.1b3e955d.js"><link rel="prefetch" href="/super-vuex/assets/js/3.0083cd94.js">
+    <link rel="preload" href="/super-vuex/assets/css/4.styles.4805f51c.css" as="style"><link rel="preload" href="/super-vuex/assets/js/app.1b6aec4e.js" as="script"><link rel="preload" href="/super-vuex/assets/js/2.658f59a1.js" as="script"><link rel="prefetch" href="/super-vuex/assets/js/0.8a2df4a5.js"><link rel="prefetch" href="/super-vuex/assets/js/1.1b3e955d.js"><link rel="prefetch" href="/super-vuex/assets/js/3.0083cd94.js">
     <link rel="stylesheet" href="/super-vuex/assets/css/4.styles.4805f51c.css">
   </head>
   <body>
@@ -86,6 +86,14 @@ Main<span class="token punctuation">.</span><span class="token function">setModu
 Main<span class="token punctuation">.</span><span class="token function">setPlugin</span><span class="token punctuation">(</span>vuexPromise<span class="token punctuation">,</span> vuejsStorage<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> Main<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>在SuperVuex初始化之后，还可以动态注入或者解注module模块</p><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> store <span class="token keyword">from</span> <span class="token string">'store.js'</span>
+<span class="token keyword">const</span> newModule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChildVuex</span><span class="token punctuation">(</span><span class="token string">'newModule'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 动态注入模块</span>
+store<span class="token punctuation">.</span>$connect<span class="token punctuation">.</span><span class="token function">registerModule</span><span class="token punctuation">(</span>newModule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 动态解注模块</span>
+store<span class="token punctuation">.</span>$connect<span class="token punctuation">.</span><span class="token function">unregisterModule</span><span class="token punctuation">(</span><span class="token string">'newModule'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></div><p>在VUE中如何使用</p><div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
   ...
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
@@ -136,6 +144,6 @@ Main<span class="token punctuation">.</span><span class="token function">setPlug
         ← <a href="/super-vuex/md/use/use.html" class="prev">
           使用
         </a></span><!----></p></div></div></div></div>
-    <script src="/super-vuex/assets/js/2.e44d01ac.js" defer></script><script src="/super-vuex/assets/js/app.cbbe179f.js" defer></script>
+    <script src="/super-vuex/assets/js/2.658f59a1.js" defer></script><script src="/super-vuex/assets/js/app.1b6aec4e.js" defer></script>
   </body>
 </html>

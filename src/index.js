@@ -19,6 +19,7 @@ export default class SuperVuex extends ChildVuex {
   init() {
     this.store = new Vuex.Store(this.value);
     this.store.$connect = this;
+    this.store[this._namespace] = this;
     this._pools.forEach(item => {
       if (this.store[item._namespace]) throw new Error(`${item._namespace} has already exists on store`);
       this.store[item._namespace] = item;

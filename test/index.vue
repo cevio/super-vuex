@@ -4,6 +4,7 @@
     <p>age: {{$store.state.user.age}}</p>
     <p>logined: {{$store.state.user.load.allow}}</p>
     <p>Students:</p>
+    <p>Main Count: {{$store.state.count}}</p>
     <ul>
       <li v-for="student in $store.state.user.students" :key="student.age">
         <p>name: {{student.name}}</p>
@@ -18,6 +19,7 @@
     <p><button @click="shiftStudent">Array.shift</button></p>
     <p><button @click="deleteStudent">Array.splice</button></p>
     <p><button @click="gets">获取{{$store.state.user.load.data.app_version}}</button></p>
+    <p><button @click="kkk">主模块+=1</button></p>
   </div>
 </template>
 
@@ -59,6 +61,9 @@
       },
       gets() {
         this.$store.user.dispatch('load.data');
+      },
+      kkk() {
+        this.$store.test.commit('count', this.$store.state.count + 1);
       }
     }
   }

@@ -1,8 +1,7 @@
 import { SuperVuex } from 'super-vuex';
 import UserStore from './store/user';
 
-const Main = new SuperVuex('test');
-Main.setState({
+const Main = new SuperVuex('test', {
   count: 1
 });
 Main.setModule(UserStore);

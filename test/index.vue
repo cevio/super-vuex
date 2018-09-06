@@ -1,38 +1,24 @@
 <template>
   <div>
-    <h3>user module</h3>
-    <p>name: {{$store.state.user.name}}</p>
-    <p>age: {{$store.state.user.age}}</p>
-    <p>logined: {{$store.state.user.load.allow}}</p>
-    <p>Students:</p>
-    <p>Main Count: {{$store.state.count}}</p>
-    <ul>
-      <li v-for="student in $store.state.user.students" :key="student.age">
-        <p>name: {{student.name}}</p>
-        <p>age: {{student.age}}</p>
-      </li>
-    </ul>
-    <div v-if="$store.state.subs">
-      <h3>subs module</h3>
-      <p>name: {{$store.state.subs.name}}</p>
-      <ul>
-        <li v-for="sub in $store.state.subs.subs" :key="sub.id">
-          <p>name: {{sub.name}}</p>
-          <p>age: {{sub.id}}</p>
-        </li>
-      </ul>
-    </div>
-    <p><button @click="changeName">修改名字</button></p>
-    <p><button @click="changeAllow">不许登录</button></p>
-    <p><button @click="pushStudent">Array.push</button></p>
-    <p><button @click="unshiftStudent">Array.unshift</button></p>
-    <p><button @click="popStudent">Array.pop</button></p>
-    <p><button @click="shiftStudent">Array.shift</button></p>
-    <p><button @click="deleteStudent">Array.splice</button></p>
-    <p><button @click="gets">获取{{$store.state.user.load.data.app_version}}</button></p>
-    <p><button @click="registerModule">动态注入module</button></p>
-    <p><button @click="unregisterModule">解注module</button></p>
-    <p><button @click="kkk">主模块+=1</button></p>
+    <h3>User module</h3>
+    <p>Name: {{name}} <button @click="changeName">-_-</button></p>
+    <p>A: {{dataA}} <button @click="changeA">-_-</button></p>
+    <p>B: {{dataB}} <button @click="changeB">-_-</button> <button @click="changeC">#</button></p>
+    <p>C: {{a}} <button @click="register">register new sub module: a</button></p>
+    <ol>
+      <li v-for="item in students" :key="item.id">{{item.name}} - id: {{item.id}}</li>
+    </ol>
+    <p>
+      <button @click="pushData">push</button>
+      <button @click="unshiftData">unshift</button>
+      <button @click="popData">pop</button>
+      <button @click="shiftData">shift</button>
+      <button @click="spliceData">splice</button>
+      <button @click="reverseData">reverse</button>
+      <button @click="sortData">sort</button>
+    </p>
+    <p><button @click="getData">getData npm</button></p>
+    <pre v-html="html"></pre>
   </div>
 </template>
 
@@ -43,68 +29,80 @@
   export default {
     store: store,
     name: "index",
+    data() {
+      return {
+        a: null
+      }
+    },
     methods: {
       changeName() {
-        this.$store.user.commit('name', 'someone');
+        this.$store.user.commit('name', 'evio:' + Date.now())
       },
-      changeAllow() {
-        this.$store.user.commit('load.allow', false);
+      changeA() {
+        this.$store.user.commit(`load['data'].a`, 2)
       },
-      pushStudent() {
-        this.$store.user.push('students', {
-          name: 'huaping',
-          age: 300
-        }, {
+      changeB() {
+        this.$store.user.commit(`load.data.b`, 3)
+      },
+      changeC() {
+        this.$store.user.commit(`load.data.b`, Date.now())
+      },
+      pushData() {
+        this.$store.user.push('load.data.students', {
           name: 'abc',
-          age: 72
-        });
+          age: 29,
+          id: Date.now()
+        })
       },
-      unshiftStudent() {
-        this.$store.user.unshift('students', {
-          name: 'huaping1',
-          age: 302
-        });
+      unshiftData() {
+        this.$store.user.unshift('load.data.students', {
+          name: 'def',
+          age: 22,
+          id: Date.now()
+        })
       },
-      popStudent() {
-        this.$store.user.pop('students');
+      popData() {
+        this.$store.user.pop('load.data.students');
       },
-      shiftStudent() {
-        this.$store.user.shift('students');
+      shiftData() {
+        this.$store.user.shift('load.data.students');
       },
-      deleteStudent() {
-        this.$store.user.splice('students', 1, 1);
+      spliceData() {
+        this.$store.user.splice('load.data.students', 2, 2);
       },
-      gets() {
+      reverseData() {
+        this.$store.user.reverse('load.data.students');
+      },
+      sortData() {
+        this.$store.user.sort('load.data.students', (a, b) => a.id - b.id);
+      },
+      getData() {
         this.$store.user.dispatch('load.data');
       },
-<<<<<<< HEAD
-      kkk() {
-        this.$store.test.commit('count', this.$store.state.count + 1);
-=======
-      registerModule() {
-        subs.value = {
-          name: 'demo',
-          subs: [{
-            id: 1,
-            name: 'java'
-          }, {
-            id: 2,
-            name: 'js'
-          }, {
-            id: 3,
-            name: 'python'
-          }]
-        };
+      register() {
+        subs.setState({
+          a:1
+        });
         this.$store.$connect.registerModule(subs);
-      }, 
-      unregisterModule() {
-        this.$store.$connect.unregisterModule('subs');
->>>>>>> 99fe22e7959859a9d384838a7b8c082cc200d78a
+        this.a = this.$store.subs.get('a');
+      }
+    },
+    computed: {
+      name() {
+        return this.$store.user.get('name');
+      },
+      dataA() {
+        return this.$store.user.get('load.data.a')
+      },
+      dataB() {
+        return this.$store.user.get('load.data.b')
+      },
+      students() {
+        return this.$store.user.get('load.data.students')
+      },
+      html() {
+        return this.$store.user.get('html')
       }
     }
   }
 </script>
-
-<style scoped>
-
-</style>

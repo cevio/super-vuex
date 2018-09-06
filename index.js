@@ -1,11 +1,10 @@
-import superVuex from './src/index';
-import childVuex from './src/interface';
+import SuperStore from './src/super-store';
+import ChildStore from './src/child-store';
 
-const result = {
-  SuperVuex: superVuex,
-  ChildVuex: childVuex,
-};
+export default {
+  SuperVuex: SuperStore,
+  ChildVuex: ChildStore
+}
 
-export default result;
-export const SuperVuex = superVuex;
-export const ChildVuex = childVuex;
+export const SuperVuex = SuperStore;
+export const ChildVuex = ChildStore;

@@ -98,6 +98,12 @@ export default class ChildStore {
       this._persister(state);
     }
   }
+
+  clear() {
+    if (this._persist) {
+      window.localStorage.removeItem('super_vuex_' + this._namespace + '_' + this._alias);
+    }
+  }
   
   commit(expression, data) {
     this._missRoot();

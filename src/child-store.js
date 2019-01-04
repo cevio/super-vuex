@@ -6,14 +6,15 @@ import {
 } from './utils';
 
 export default class ChildStore {
-  constructor(namespace, state = {}) {
+  constructor(namespace, alias, persist) {
     this.root = null;
     this._namespace = namespace;
     this._state = {};
     this._getters = {};
     this._mutations = {};
     this._actions = {};
-    this.setState(state);
+    this._alias = alias;
+    this._persist = persist;
     this.committer();
     this.arrayCommitter();
   }
@@ -53,6 +54,15 @@ export default class ChildStore {
   
   setState(state) {
     this._state = state;
+    if (this._persist) {
+      const res = window.localStorage.getItem('super_vuex_' + this._namespace + '_' + this._alias);
+      if (res) {
+        try {
+          const converts = JSON.parse(res);
+          this._state = converts;
+        } catch(e) {}
+      }
+    }
   }
   
   get(expression) {
@@ -65,16 +75,27 @@ export default class ChildStore {
   setGetter(expression, cb) {
     this._getters[this._getterName(expression)] = cb;
   }
+
+  _persister(state) {
+    if (this._persist) {
+      clearTimeout(this._persistTimer);
+      this._persistTimer = setTimeout(() => {
+        window.localStorage.setItem('super_vuex_' + this._namespace + '_' + this._alias, JSON.stringify(state));
+      }, 0);
+    }
+  }
   
   committer() {
     this._mutations[this._sysCommitName] = (state, { expression, data }) => {
       setValueFromExpressionArray(state, formatExpressionToArray(expression), data);
+      this._persister(state);
     }
   }
   
   arrayCommitter() {
     this._mutations[this._arrayCommitName] = (state, { expression, method, args }) => {
       setArrayValueFromExpressionArray(state, formatExpressionToArray(expression), method, args);
+      this._persister(state);
     }
   }
   

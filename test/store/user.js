@@ -1,7 +1,8 @@
 import { ChildVuex } from "super-vuex";
 import axios from 'axios';
 
-const child = new ChildVuex('user', {
+const child = new ChildVuex('user', 'pssdfafafad', true);
+child.setState({
   name: 'evio',
   age: 18,
   load: {
@@ -17,7 +18,7 @@ const child = new ChildVuex('user', {
       ]
     },
   }
-});
+})
 
 export default child;
 

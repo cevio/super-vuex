@@ -6,15 +6,14 @@ import {
 } from './utils';
 
 export default class ChildStore {
-  constructor(namespace, alias, persist) {
+  constructor(namespace, storage) {
     this.root = null;
     this._namespace = namespace;
     this._state = {};
     this._getters = {};
     this._mutations = {};
     this._actions = {};
-    this._alias = alias;
-    this._persist = persist;
+    this._storage = storage;
     this.committer();
     this.arrayCommitter();
   }
@@ -52,10 +51,10 @@ export default class ChildStore {
     return `${this._namespace}:ARRAY:COMMITTER`;
   }
   
-  setState(state) {
+  async setState(state) {
     this._state = state;
-    if (this._persist) {
-      const res = window.localStorage.getItem('super_vuex_' + this._namespace + '_' + this._alias);
+    if (this._storage) {
+      const res = await this._storage.get('super_vuex_' + this._namespace);
       if (res) {
         try {
           const converts = JSON.parse(res);
@@ -77,10 +76,10 @@ export default class ChildStore {
   }
 
   _persister(state) {
-    if (this._persist) {
+    if (this._storage) {
       clearTimeout(this._persistTimer);
       this._persistTimer = setTimeout(() => {
-        window.localStorage.setItem('super_vuex_' + this._namespace + '_' + this._alias, JSON.stringify(state));
+        this._storage.set('super_vuex_' + this._namespace, JSON.stringify(state));
       }, 0);
     }
   }
@@ -100,8 +99,8 @@ export default class ChildStore {
   }
 
   clear() {
-    if (this._persist) {
-      window.localStorage.removeItem('super_vuex_' + this._namespace + '_' + this._alias);
+    if (this._storage) {
+      this._storage.delete('super_vuex_' + this._namespace);
     }
   }
   

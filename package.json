@@ -1,6 +1,6 @@
 {
   "name": "super-vuex",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "super vuex",
   "author": "evio",
   "license": "MIT",
@@ -14,6 +14,9 @@
     "docs:dev": "./node_modules/.bin/vuepress dev docs",
     "docs:build": "./node_modules/.bin/vuepress build docs"
   },
+  "peerDependencies": {
+    "vue": "^2.6.6"
+  },
   "devDependencies": {
     "axios": "^0.18.0",
     "babel-loader": "^7.1.4",
@@ -26,7 +29,6 @@
     "webpack-dev-server": "^3.1.7"
   },
   "dependencies": {
-    "vue": "^2.5.16",
     "vuex": "^3.0.1"
   }
 }
